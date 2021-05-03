@@ -24,3 +24,10 @@
 	<Lazyload {greeting} names={selectedNames} />
 	<ReflectProperty />
 </main>
+
+<style>
+	main {
+		max-width: 80ch;
+		margin: 2rem auto;
+	}
+</style>

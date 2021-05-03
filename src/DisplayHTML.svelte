@@ -1,5 +1,12 @@
 <script>
+	import Prism from 'prismjs';
+
 	let elementHTML = '';
+	$: highlightedHTML = Prism.highlight(
+		elementHTML,
+		Prism.languages.html,
+		'html'
+	);
 
 	/** @param {Element} node */
 	function getHTML(node) {
@@ -29,7 +36,7 @@
 <div use:getHTML>
 	<slot />
 </div>
-<pre>{elementHTML}</pre>
+<pre>{@html highlightedHTML}</pre>
 
 <style>
 	pre {
