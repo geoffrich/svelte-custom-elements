@@ -4,12 +4,13 @@
 	setTimeout(() => import('./fancy-greeting'), 500);
 
 	let names = ['Amy', 'Rory', 'Clara', 'Bill'];
-	let selectedNames = ['Clara'];
+	let selectedNames = ['Amy', 'Clara'];
 	let greeting = 'Hello';
 	let counter = 0;
 
 	function setProperties(node, properties) {
 		const applyProperties = () => {
+			// note that this does not check if the property changed
 			Object.entries(properties).forEach(([k, v]) => {
 				node[k] = v;
 			});
@@ -42,7 +43,7 @@
 	{#key counter}
 		<h2>Default</h2>
 		<DisplayHTML>
-			<fancy-greeting {greeting} names={selectedNames} />
+			<fancy-greeting {greeting} names={selectedNames} large />
 		</DisplayHTML>
 		<h2>With properties action</h2>
 		<DisplayHTML>
