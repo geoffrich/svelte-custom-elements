@@ -1,55 +1,14 @@
 <script>
-	import DisplayHTML from './DisplayHTML.svelte';
-
-	setTimeout(() => import('./fancy-greeting'), 500);
+	import Lazyload from './Lazyload.svelte';
+	import ReflectProperty from './ReflectProperty.svelte';
 
 	let names = ['Amy', 'Rory', 'Clara', 'Bill'];
 	let selectedNames = ['Amy', 'Clara'];
 	let greeting = 'Hello';
-	let counter = 0;
-
-	function setProperties(node, properties) {
-		const applyProperties = () => {
-			// note that this does not check if the property changed
-			Object.entries(properties).forEach(([k, v]) => {
-				node[k] = v;
-			});
-		};
-
-		applyProperties();
-
-		return {
-			update(updatedProperties) {
-				properties = updatedProperties;
-				applyProperties();
-			}
-		};
-	}
 </script>
 
 <main>
-	<h1>Svelte and custom elements: properties vs attributes</h1>
-
-	<p>
-		On initial render, the custom element definition has not been loaded. This
-		causes Svelte to set everything as attributes using setAttribute. Click the
-		button to re-render the custom element. Since the custom element is now
-		defined, Svelte sets everything as properties.
-	</p>
-
-	<button on:click={() => counter++}>Re-render custom element</button>
-	<p>Re-rendered {counter} times</p>
-
-	{#key counter}
-		<h2>Default</h2>
-		<DisplayHTML>
-			<fancy-greeting {greeting} names={selectedNames} large />
-		</DisplayHTML>
-		<h2>With properties action</h2>
-		<DisplayHTML>
-			<fancy-greeting {greeting} use:setProperties={{ names: selectedNames }} />
-		</DisplayHTML>
-	{/key}
+	<h1>Svelte and custom elements</h1>
 
 	<label>Greeting <input type="text" bind:value={greeting} /></label>
 	<fieldset>
@@ -61,4 +20,7 @@
 			>
 		{/each}
 	</fieldset>
+
+	<Lazyload {greeting} names={selectedNames} />
+	<ReflectProperty />
 </main>
