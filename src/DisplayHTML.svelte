@@ -1,8 +1,28 @@
 <script>
 	let elementHTML = '';
 
+	/** @param {Element} node */
 	function getHTML(node) {
-		elementHTML = node.innerHTML;
+		const updateHTML = () => {
+			elementHTML = node.innerHTML;
+		};
+
+		updateHTML();
+
+		const observer = new MutationObserver((mutations, observer) => {
+			updateHTML();
+		});
+
+		/** @type {MutationObserverInit} */
+		const config = { attributes: true, childList: true, subtree: true };
+
+		observer.observe(node, config);
+
+		return {
+			destroy() {
+				observer.disconnect();
+			}
+		};
 	}
 </script>
 
