@@ -1,6 +1,10 @@
 <script>
 	import DisplayHTML from './DisplayHTML.svelte';
-	setTimeout(() => import('./custom-elements/fancy-greeting'), 500);
+	import { onMount } from 'svelte';
+
+	onMount(async () => {
+		await import('./custom-elements/fancy-greeting');
+	});
 
 	export let greeting;
 	export let names;
