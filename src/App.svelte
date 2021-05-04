@@ -1,6 +1,7 @@
 <script>
 	import Lazyload from './Lazyload.svelte';
 	import ReflectProperty from './ReflectProperty.svelte';
+	import BooleanProperty from './BooleanProperty.svelte';
 
 	let names = ['Amy', 'Rory', 'Clara', 'Bill'];
 	let selectedNames = ['Amy', 'Clara'];
@@ -23,6 +24,7 @@
 
 	<Lazyload {greeting} names={selectedNames} />
 	<ReflectProperty />
+	<BooleanProperty />
 </main>
 
 <style>
