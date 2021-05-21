@@ -7,7 +7,11 @@
 		const applyAttributes = () => {
 			// note that this does not check if the attribute changed
 			Object.entries(attributes).forEach(([k, v]) => {
-				node.setAttribute(k, v);
+				if (v !== undefined) {
+					node.setAttribute(k, v);
+				} else {
+					node.removeAttribute(k);
+				}
 			});
 		};
 
@@ -20,18 +24,23 @@
 			}
 		};
 	}
+
+	let flagged = true;
 </script>
 
 <h2>Attributes used as styling hooks</h2>
+<label><input type="checkbox" bind:checked={flagged} /> Flagged</label>
 
 <h3>Property set, attribute not reflected</h3>
 <DisplayHTML>
-	<custom-text flag>Need to put some interesting text here.</custom-text>
+	<custom-text flag={flagged}
+		>Need to put some interesting text here.</custom-text
+	>
 </DisplayHTML>
 
 <h3>Force setting attributes</h3>
 <DisplayHTML>
-	<custom-text use:setAttributes={{ flag: '' }}
+	<custom-text use:setAttributes={{ flag: flagged ? '' : undefined }}
 		>Need to put some interesting text here.</custom-text
 	>
 </DisplayHTML>
