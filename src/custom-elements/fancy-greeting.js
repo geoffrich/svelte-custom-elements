@@ -24,7 +24,8 @@ export class FancyGreeting extends LitElement {
 
 	render() {
 		return html`<p>
-			${this.greeting}, ${this.names ? this.names.join(', ') : 'no one'}!
+			${this.greeting},
+			${this.names && this.names.length > 0 ? this.names.join(', ') : 'no one'}!
 		</p>`;
 	}
 }
