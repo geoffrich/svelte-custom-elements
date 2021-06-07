@@ -1,8 +1,6 @@
-import { html, css, LitElement } from 'lit';
+import { html, LitElement } from 'lit';
 
 export class CustomInput extends LitElement {
-	static get styles() {}
-
 	static get properties() {
 		return {
 			disabled: {
@@ -18,7 +16,6 @@ export class CustomInput extends LitElement {
 	}
 
 	render() {
-		console.log(this.disabled);
 		return html`
 			<label
 				><slot></slot> <input ?disabled=${this.disabled} type="text"
