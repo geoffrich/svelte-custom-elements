@@ -1,10 +1,10 @@
 <script>
-	import './custom-elements/custom-input';
+	import './custom-elements/secret-box';
 	import DisplayHTML from './DisplayHTML.svelte';
 	import ShowProperties from './ShowProperties.svelte';
 
 	let noValueEl, valueEl;
-	const properties = ['disabled'];
+	const properties = ['open'];
 </script>
 
 <h2>Boolean properties</h2>
@@ -16,17 +16,17 @@
 
 <h3>Default</h3>
 <DisplayHTML>
-	<custom-input>First name</custom-input>
+	<secret-box />
 </DisplayHTML>
 
-<h3>disabled set, no value</h3>
+<h3>open set, no value</h3>
 <DisplayHTML>
-	<custom-input disabled bind:this={noValueEl}>Middle name</custom-input>
+	<secret-box open bind:this={noValueEl} />
 </DisplayHTML>
 <ShowProperties element={noValueEl} {properties} />
 
-<h3>disabled={'{true}'}</h3>
+<h3>open={'{true}'}</h3>
 <DisplayHTML>
-	<custom-input disabled={true} bind:this={valueEl}>Last name</custom-input>
+	<secret-box open={true} bind:this={valueEl}>Last name</secret-box>
 </DisplayHTML>
 <ShowProperties element={valueEl} {properties} />
